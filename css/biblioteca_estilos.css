@@ -9,6 +9,8 @@ h3{
     font-size: 16px;
     font-family: Verdana;
     color: grey;
+    text-align: center;
+    
 }
 .menu{
     font-size: 14px;
@@ -17,7 +19,7 @@ h3{
     color: purple;
 }
 body{
-    background-color: rgb(242, 248, 248);
+    background-color: rgb(241, 241, 237);
 }
 .listas{
     font-size: 12px;
@@ -30,6 +32,8 @@ body{
 }
 .container{
     width:500px;
+    background-color: rgb(241, 241, 237);
+    
 }
 .div1{
     background-color: rgb(241, 241, 237);
@@ -43,3 +47,4 @@ body{
 .div4{
     background-color: rgb(241, 241, 237);
 }
+

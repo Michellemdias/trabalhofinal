@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento Agencia</title>
+    
+    <script type="text/javascript" src="agendamentocliente.js"></script>
+
 
     <!-- Chamada da biblioteca em CSS interna -->
     <link rel="stylesheet" href="css\biblioteca_estilos.css">
@@ -32,7 +35,8 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-2 col-sm-3 div1">Agendamento de Horário em Agencia</div>
+            
+            <div class="col-12 div1"><h3><br><br>Agendamento de Horário em Agencia</h3></div>
 
         </div>
         <br> <br>
@@ -42,56 +46,56 @@
                 <form>
                     <div class="form-row">
 
-                        <div id="nomecli" class="form-group col-md-12">
+                        <div  class="form-group col-md-12">
                             <label for="inputNome">Nome</label>
-                            <input type="text" class="form-control" id="inputNome">
+                            <input id="nomecli" type="text" class="form-control"  required>
                         </div>
-                        <div id="emailcli" class="form-group col-md-12">
+                        <div  class="form-group col-md-12">
                             <label for="inputEmail4">E-mail</label>
-                            <input type="email" class="form-control" id="inputEmail4">
+                            <input id="emailcli" type="email" class="form-control"  required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div id="celcli" class="form-group col-md-12"></div>
+                        <div  class="form-group col-md-12"></div>
                         <label for="inputCelular">Telefone Celular</label>
-                        <input type="text" class="form-control" id="inputCelular" placeholder="(xx) xxxxx-xxxx">
+                        <input  id="celcli" type="text" class="form-control" id="inputCelular" placeholder="(xx) xxxxx-xxxx" required>
                     </div>
-                    <div class="form-group>
-                        <div id=" agcli" class="form-group col-md-6"></div>
+                    <div class="form-group">
+
+                        <div id="agcli" class="form-group col-md-6"></div>
+
                     <label for="inputAg">Agência</label>
                     <select id="inputAg" class="form-control">
                         <option selected>Selecione a Agência</option>
-                        <option>...</option>
+                        
                     </select>
                     <BR>
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="input-group-prepend">
                                 <label for="inputAg">Data</label>
+                                
                             </div>
                             <input id="dateagenda" type="date" class="form-control" aria-label="Username"
                                 aria-describedby="addon-wrapping">
 
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="input-group-prepend">
                                 <label for="inputAg">Horario Início</label>
                             </div>
                             <input id="timehorainicio" type="time" class="form-control" aria-label="Username"
-                                aria-describedby="addon-wrapping">
+                                aria-describedby="addon-wrapping" min="10:00" max="13:30" step = "1800" required>
                         </div>
-                        <div class="col-md-4">
-                            <div class="input-group-prepend">
-                                <label for="inputAg">Horario Fim</label>
-                            </div>
-                            <input id="timehorafim" type="time" class="form-control" aria-label="Username"
-                                aria-describedby="addon-wrapping">
-                        </div>
+
+
                     </div>
 
-                    <BR><BR>
-                    <button onclick="gravar()" type="button" class="btn btn-primary">Confirmar Agendamento</button>
+                    <BR>
+                     <p id ="alertdata"></p>
+                     <BR>
+                    <button onclick="gravar()" type="button" class="btn btn-outline-dark btn-block btn-lg">Confirmar Agendamento</button>
                     <BR><BR>
             </div>
 
