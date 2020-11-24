@@ -45,7 +45,7 @@ function logar() {
         .then(res => res.json())
         .then(res => {
             localStorage.setItem("logado", JSON.stringify(res));
-            window.location = "usuario.html";
+            window.location = "relatorio.html";
         })
         .catch(err => {
         
