@@ -18,5 +18,7 @@ import br.com.gama.projetofinal.model.Gerente;
 public interface GerenteDAO extends CrudRepository<Gerente,Integer>{
 	
 	public Gerente findByEmailAndSenha(String email, String senha);
+	
+	public Gerente findByRacfAndSenha(String racf, String senha);
 
 }

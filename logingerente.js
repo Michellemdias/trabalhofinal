@@ -12,12 +12,27 @@ function carregarusuario() {
 }
 
 function logar() {
-    var objeto = {
-        "email": document.getElementById("txtemail").value,
-        "senha": document.getElementById("txtsenha").value
+
+    var flag = 0;
+
+    if (document.getElementById("txtemail").value.indexOf("@") > -1) {
+
+        flag = "login";
+        var objeto = {
+            "email": document.getElementById("txtemail").value,
+            "senha": document.getElementById("txtsenha").value
+        }
     }
 
 
+    else {
+        flag = "loginracf";
+        var objeto = {
+            "racf": document.getElementById("txtemail").value,
+            "senha": document.getElementById("txtsenha").value
+        }
+
+    }
     var cabecalho = {
         method: "POST",
         body: JSON.stringify(objeto),
@@ -26,7 +41,7 @@ function logar() {
         }
     }
 
-    fetch("http://localhost:8080/login", cabecalho)
+    fetch("http://localhost:8080/"+flag, cabecalho)
         .then(res => res.json())
         .then(res => {
             localStorage.setItem("logado", JSON.stringify(res));

@@ -19,6 +19,9 @@ public class Gerente {
 	@Column(name="nome",length=50)
 	private String nome;
 	
+	@Column(name="racf",length=10)
+	private String racf;
+	
 	@Column(name="email",length=80)
 	private String email;
 	
@@ -32,15 +35,18 @@ public class Gerente {
 		super();
 	}
 
-	public Gerente(int id, String nome, String email, String senha, String foto) {
+
+	public Gerente(int id, String nome, String racf, String email, String senha, String foto) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.racf = racf;
 		this.email = email;
 		this.senha = senha;
 		this.foto = foto;
 	}
-	
+
+
 	public int getId() {
 		return id;
 	}
@@ -70,6 +76,14 @@ public class Gerente {
 	}
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public String getRacf() {
+		return racf;
+	}
+
+	public void setRacf(String racf) {
+		this.racf = racf;
 	}
 	
 	

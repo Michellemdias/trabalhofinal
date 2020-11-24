@@ -30,6 +30,16 @@ public class GerenteController {
 		return ResponseEntity.ok(gerente);
 	}
 	
+	@PostMapping("/loginracf")
+	public ResponseEntity<Gerente> logarRacf(@RequestBody Gerente objeto){
+		
+		Gerente gerente = dao.findByRacfAndSenha(objeto.getRacf(), objeto.getSenha());
+		
+		if(gerente==null) return ResponseEntity.status(404).build();
+		
+		return ResponseEntity.ok(gerente);
+	}
+	
 	@GetMapping("/buscaGerente")
 	public ResponseEntity<List<Gerente>> getAll(){
 		

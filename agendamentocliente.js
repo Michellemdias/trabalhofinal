@@ -8,7 +8,7 @@ function preencheragencias(lista){
 }
 
 function carregaragencias(){
-    fetch("http://localhost:8080/agencias")
+    fetch("http://localhost:8080/agencia")
     .then(res=> res.json())
     .then(res=> preencheragencias(res));
 }
