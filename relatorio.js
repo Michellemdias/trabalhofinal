@@ -1,8 +1,11 @@
 function carregardados() {
+    
     var usuariologado = localStorage.getItem("logado");
     if (usuariologado == null) {
         window.location = "login.html";
     } else {
+        carregaragencias();
+        carregarclientes();
         var usuariojson = JSON.parse(usuariologado);
         document.getElementById("foto").innerHTML =
             "<img width='25%' heigth='25%' alt='Foto não encontrada'src=imagens/" + usuariojson.foto + ">";
@@ -14,16 +17,17 @@ function carregardados() {
 function montartabela(lista){
     var saida = 
     "<table border='1' align='center'> <tr>" +
-    "<th>Musica</th>   <th>Artista</th>  <th>Cadastro</th> </tr>";
+    "<th>Agencia</th>   <th>Cliente</th>  <th>Data</th> </tr>";
 
-    
     for (cont=0;cont<lista.length;cont++){
         saida+=
         "<tr>" +
-        "<td>" + lista[cont].titulo + "</td>" + 
-        "<td>" + lista[cont].artista.nomeArtistico + "</td>" + 
-        "<td>" + lista[cont].cadastro + "</td>" + 
+        "<td>" + lista[cont].agencia.nomeAgencia + "</td>" + 
+        "<td>" + lista[cont].nomecli + "</td>" + 
+        "<td>" + lista[cont].dataagendamento + "</td>" + 
         "</tr>";
+
+
     }
 
     saida += "</table>";
@@ -33,6 +37,8 @@ function montartabela(lista){
 
 
 function filtrar(){
+
+    
     if(
         document.getElementById("chkagencia").checked==false && 
         document.getElementById("chkcliente").checked==false &&
@@ -43,17 +49,30 @@ function filtrar(){
     }else {
         var rota = "relatoriopor";
         if(document.getElementById("chkagencia").checked==true){
-            rota+="titulo";
+            rota+="agencia";
         }
-        if(document.getElementById("chkartista").checked==true){
-            rota+="artista";
+        if(document.getElementById("chkcliente").checked==true){
+            rota+="cliente";
         }
+        if(document.getElementById("chkdata").checked==true){
+            rota+="data";
+            var data = document.getElementById("txtdata").value;
+                var ano = data.substring(0, 4);
+                var mes = data.substring(5, 7);
+                var dia = data.substring(8, 10);
+
+                var databrasil = dia + "/" + mes + "/" + ano
+        }
+        
+      
       var objeto = {
-          titulo : document.getElementById("chkagencia").value,
-          artista : {
-              id : document.getElementById("cmbartistas").value
+          nomecli : document.getElementById("cmdcliente").value,
+          dataagendamento : databrasil,
+          agencia : {
+              id : document.getElementById("cmdagencia").value
           }
       };
+
 
       var cabecalho = {
           method:"POST",
@@ -66,58 +85,42 @@ function filtrar(){
       fetch("http://localhost:8080/" + rota , cabecalho)
       .then(res=> res.json())
       .then(res => montartabela(res))
-      .catch(err => {window.alert("Musica não encontrada")});   
+      .catch(err => {window.alert("Sem agendamentos")});   
 
     }
 
 }
-function preencherartistas(lista){
-    var saida="";
-    for (cont=0;cont<lista.length;cont++){
-        saida+=
-        "<option value='"+lista[cont].id+"'>" + lista[cont].nomeArtistico + "</option>";
+
+
+
+function preencheragencias(lista) {
+    var saida ="";
+
+    for (cont = 0; cont < lista.length; cont++) {
+        saida +=
+            "<option value='" + lista[cont].id + "'>" + lista[cont].nomeAgencia + "</option>";
     }
-    document.getElementById("cmbartistas").innerHTML=saida;
+    document.getElementById("cmdagencia").innerHTML = saida;
 }
 
-function carregarartistas(){
-    fetch("http://localhost:8080/artistas")
-    .then(res=> res.json())
-    .then(res=> preencherartistas(res));
+function carregaragencias() {
+    fetch("http://localhost:8080/agencia")
+        .then(res => res.json())
+        .then(res => preencheragencias(res));
 }
 
-function gravar(){
-    var data = document.getElementById("txtcadastro").value;
-    var ano = data.substring(0,4);
-    var mes = data.substring(5,7);
-    var dia = data.substring(8);
-    var databrasil= dia + "/" + mes + "/" + ano
+function preencherclientes(lista) {
+    var saida ="";
 
-
-    var objeto = {
-        titulo : document.getElementById("txttitulo").value,
-        cadastro : document.getElementById("txtcadastro").value,
-        lancamento : document.getElementById("cmblancamento").value,
-        artista : {
-            id: document.getElementById("cmbartistas").value
-        }
+    for (cont = 0; cont < lista.length; cont++) {
+        saida +=
+            "<option value='" + lista[cont].nomecli + "'>" + lista[cont].nomecli + "</option>";
     }
+    document.getElementById("cmdcliente").innerHTML = saida;
+}
 
-    var cabecalho = {
-        method : "POST",
-        body: JSON.stringify(objeto),
-        headers: {
-            "Content-type": "application/json"
-        }
-    }
-    fetch("http://localhost:8080/novamusica",cabecalho)
-    .then(res => res.json())
-    .then(res => {window.alert("Gravado com sucesso")})
-    .catch(err => {window.alert("Ocorreu um erro")});
-
-
-
-
-
-
+function carregarclientes() {
+    fetch("http://localhost:8080/clientes")
+        .then(res => res.json())
+        .then(res => preencherclientes(res));
 }
