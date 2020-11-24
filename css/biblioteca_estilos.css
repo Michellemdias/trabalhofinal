@@ -28,11 +28,7 @@ body{
     color: yellow;
     background-color: yellowgreen;
 }
-label{
-    color: red;
-}
 .container{
-    border:3px solid red;
     width:500px;
 }
 .div1{

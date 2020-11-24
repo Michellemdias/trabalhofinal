@@ -33,6 +33,13 @@ function logar() {
             window.location = "usuario.html";
         })
         .catch(err => {
-            window.alert("Ocorreu um erro");
+        
+            document.getElementById("submit").innerHTML=
+            "<div class='alert alert-danger' role='alert'> Usuario/senha invalidos </div>";
+            document.getElementById("txtemail").focus();
+         
+
+
+
         });
 }
