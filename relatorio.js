@@ -8,16 +8,16 @@ function carregardados() {
         carregarclientes();
         var usuariojson = JSON.parse(usuariologado);
         document.getElementById("foto").innerHTML =
-            "<img width='25%' heigth='25%' alt='Foto não encontrada'src=imagens/" + usuariojson.foto + ">";
+            "<img  alt='Foto não encontrada'src=imagens/" + usuariojson.foto + ">";
         document.getElementById("dados").innerHTML =
-            "<h3>" + usuariojson.nome + "<br>" + usuariojson.email + "<br>ID:" + usuariojson.id + "<br> </h3>"
+            "<h3>" + usuariojson.nome + "<br>" + usuariojson.email + "<br></h3>"
     }
 }
 
 function montartabela(lista){
     var saida = 
-    "<table border='1' align='center'> <tr>" +
-    "<th>Agencia</th>   <th>Cliente</th>  <th>Data</th> </tr>";
+    "<table align='center' class='table table-hover'><thead class='thead-dark'> <tr>" +
+    "<th>Agencia</th>   <th>Cliente</th>  <th>Data de Agendamento</th> <th>Horario de Agendamento</th></tr></thread>";
 
     for (cont=0;cont<lista.length;cont++){
         saida+=
@@ -25,6 +25,7 @@ function montartabela(lista){
         "<td>" + lista[cont].agencia.nomeAgencia + "</td>" + 
         "<td>" + lista[cont].nomecli + "</td>" + 
         "<td>" + lista[cont].dataagendamento + "</td>" + 
+        "<td>" + lista[cont].horaagendamento + "</td>" + 
         "</tr>";
 
 
@@ -64,7 +65,6 @@ function filtrar(){
                 var databrasil = dia + "/" + mes + "/" + ano
         }
         
-      
       var objeto = {
           nomecli : document.getElementById("cmdcliente").value,
           dataagendamento : databrasil,

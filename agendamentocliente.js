@@ -14,7 +14,7 @@ function gravar() {
                 var dia = data.substring(8, 10);
 
                 var databrasil = dia + "/" + mes + "/" + ano
-
+                
                 var objeto = {
                     nomecli: document.getElementById("nomecli").value,
                     emailcli: document.getElementById("emailcli").value,

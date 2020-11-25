@@ -31,7 +31,7 @@ body{
     background-color: yellowgreen;
 }
 .container{
-    
+    width: 500px;
     background-color: rgb(241, 241, 237);
     
 }
