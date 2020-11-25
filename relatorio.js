@@ -1,3 +1,7 @@
+function logout(){
+    window.location = "logingerente.html";
+}
+
 function carregardados() {
     
     var usuariologado = localStorage.getItem("logado");
